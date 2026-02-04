@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Allura&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe9ee 50%, #ffd4dd 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            position: relative;
+            padding: 60px 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle at top right, rgba(255,182,193,0.08), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(4rem, 14vw, 8rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 90px;
+            color: #1a1a1a;
+            line-height: 0.9;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: #1a1a1a;
+        }
+
+        .testo {
+            font-family: 'Allura', cursive;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            line-height: 1.6;
+            margin-bottom: 100px;
+            color: #2a2a2a;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .buttons-section {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .question {
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            letter-spacing: -0.01em;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;  /* ← AGGIUNTO */
+        }
+
+        .btn {
+            padding: 16px 48px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 0.03em;
+            min-width: 170px;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-si {
+            background: #ffffff;
+            color: #1a1a1a;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border: 1.5px solid rgba(0,0,0,0.1);
+            transform-origin: center center;  /* ← AGGIUNTO */
+        }
+
+        .btn-si:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+        }
+
+        .btn-no {
+            background: #ff0000;
+            color: #ffffff;
+            box-shadow: 0 8px 30px rgba(255,0,51,0.4);
+        }
+
+        .btn-no:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255,0,51,0.5);
+            background: #ff0000;
+        }
+
+        .response-no-phrases {
+            font-size: 1rem;
+            color: #e63946;
+            font-style: italic;
+            margin-top: 20px;
+            min-height: 30px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                margin-bottom: 70px;
+            }
+
+            h1::after {
+                bottom: -25px;
+            }
+
+            .testo {
+                margin-bottom: 80px;
+                font-size: clamp(1.4rem, 3.5vw, 2rem);
+            }
+
+            .buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h1>Invito</h1>
+
+        <div class="testo">
+            Sei la persona più bella che abbia mai conosciuto. Provi sempre a rendermi una persona migliore (anche se sbaglio tanto), mi hai aiutato a crescere, mi hai sempre sostenuto, e per questo voglio che tu sia la mia valentina, oggi e sempre. Ti amo con tutto il cuore amore mio, scusa se litighiamo sempre
+        </div>
+
+        <div class="buttons-section">
+            <div class="question">
+                Accetti?
+            </div>
+            <div class="buttons">
+                <button class="btn btn-si" id="btnSi">Sì</button>
+                <button class="btn btn-no" id="btnNo">No</button>
+            </div>
+            <div class="response-no-phrases" id="noPhrases"></div>
+        </div>
+    </div>
+
+    <script>
+        const FRASI_NO = [
+            "No 💔",
+            "Ti prego? 🥺", 
+            "Daiii! 💕",
+            "Un'altra possibilità amoreee?",
+            "Non spezzarmi il cuore :(",
+            "prova a dire di sì?",
+            "Ti prego non farmi questo, piango",
+        ];
+
+        const btnSi = document.getElementById('btnSi');
+        const btnNo = document.getElementById('btnNo');
+        const noPhrases = document.getElementById('noPhrases');
+
+        let noClicks = 0;
+
+        function handleSi() {
+            window.location.href = 'grazie.html';
+        }
+
+        function handleNo() {
+            noClicks++;
+            const fraseIndex = Math.min(noClicks - 1, FRASI_NO.length - 1);
+            noPhrases.textContent = FRASI_NO[fraseIndex];
+            
+            // ← CAMBIATO: usa scale invece di fontSize/padding
+            const scale = 1 + (noClicks * 0.25);
+            btnSi.style.transform = `scale(${scale})`;
+            
+            console.log(`🔴 NO #${noClicks} → SÌ scale: ${scale.toFixed(2)}x`);
+        }
+
+        btnSi.addEventListener('click', handleSi);
+        btnNo.addEventListener('click', handleNo);
+
+        // Mantieni hover anche con scale
+        btnSi.addEventListener('mouseenter', function() {
+            const currentScale = noClicks * 0.25 + 1;
+            this.style.transform = `scale(${currentScale}) translateY(-2px)`;
+        });
+
+        btnSi.addEventListener('mouseleave', function() {
+            const currentScale = noClicks * 0.25 + 1;
+            this.style.transform = `scale(${currentScale})`;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key.toLowerCase() === 'y') handleSi();
+            if (e.key.toLowerCase() === 'n') handleNo();
+        });
+    </script>
+</body>
+</html>
